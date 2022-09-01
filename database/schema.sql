@@ -1,7 +1,7 @@
 CREATE TABLE subject (
-    subject_id bigint       NOT NULL GENERATED ALWAYS AS IDENTITY,
-    birth_date date         NOT NULL,
-    sex        character(1) NOT NULL,
+    subject_id bigint NOT NULL GENERATED ALWAYS AS IDENTITY,
+    birth_date date   NOT NULL,
+    sex        text   NOT NULL,
     PRIMARY KEY (subject_id)
 );
 

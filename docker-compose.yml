@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    stop_grace_period: 1m30s
+    env_file:
+      - docker-compose.yml
+    ports:
+      - 5432:5432
+    volumes:
+      - database/schema.sql:/docker-entrypoint-initdb.d/
+      - db-data:/var/lib/postgresql/data
+    command: -c listen_addresses='*'
+
+  adminer:
+    profiles:
+      - adminer
+    image: adminer
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+
+volumes:
+  db-data:

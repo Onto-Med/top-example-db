@@ -1,5 +1,5 @@
 library(purrr)
-library(GrowthSDS)
+library(childsds)
 library(lubridate)
 
 n        <- 1000
@@ -28,8 +28,8 @@ assessment1 <- pmap_dfr(subject, function(subject_id, birth_date, sex) {
   return(result)
 })
 
-assessment1$height <- round(centile(assessment1$age, rnorm(nrow(assessment1), 0, 1), assessment1$sex, "height", ref), 1)
-assessment1$weight <- round(centile(assessment1$age, rnorm(nrow(assessment1), 0, 1), assessment1$sex, "weight", ref), 3)
+assessment1$height <- mock_values(assessment1, sex = "sex", age = "age", childsds::kro.ref, "height")$height
+assessment1$weight <- mock_values(assessment1, sex = "sex", age = "age", childsds::kro.ref, "weight")$weight
 
 write.csv(subject, "database/subject.csv", row.names = FALSE)
 write.csv(assessment1[, c(1, 2, 5, 6)], "database/assessment1.csv", row.names = FALSE)

@@ -2,14 +2,11 @@ library(purrr)
 library(childsds)
 library(lubridate)
 
-n        <- 1000
-min_date <- as.Date("1950-01-01")
+args = commandArgs(trailingOnly=TRUE)
+
+n        <- ifelse(length(args) == 0, 1000, args[1])
+min_date <- as.Date(ifelse(length(args) > 2, "1950-01-01", args[2]))
 max_date <- Sys.time()
-ref      <- combineReferences(
-  GrowthSDS::kromeyerHauschild,
-  GrowthSDS::microcensus.germany,
-  x.cut = 18
-)
 
 subject <- data.frame(
   subject_id = 1:n,
@@ -31,5 +28,5 @@ assessment1 <- pmap_dfr(subject, function(subject_id, birth_date, sex) {
 assessment1$height <- mock_values(assessment1, sex = "sex", age = "age", childsds::kro.ref, "height")$height
 assessment1$weight <- mock_values(assessment1, sex = "sex", age = "age", childsds::kro.ref, "weight")$weight
 
-write.csv(subject, "database/subject.csv", row.names = FALSE)
-write.csv(assessment1[, c(1, 2, 5, 6)], "database/assessment1.csv", row.names = FALSE)
+write.csv(subject, "subject.csv", row.names = FALSE)
+write.csv(assessment1[, c(1, 2, 5, 6)], "assessment1.csv", row.names = FALSE)

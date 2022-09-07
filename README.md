@@ -19,4 +19,8 @@ Follow these instructions to set up the example database:
 
 3. Start the containers (you can leave out `--profile adminer` to just start the database)
 
-        docker compose --profile adminer up -d
+        docker compose --profile adminer up -d --build
+
+In addition, you can overwrite the following image build arguments by running `docker compose build --build-arg ...`:
+* `N`: number of subjects to generate
+* `MIN_DATE`: minimum birth date

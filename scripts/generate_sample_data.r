@@ -42,13 +42,13 @@ write.csv(assessment1[, c(1, 2, 5, 6, 7)], "assessment1.csv", row.names = FALSE)
 rm(assessment1)
 
 ## conditions
-condition <- build_skeleton(subject, n = 5)
+condition <- build_skeleton(subject, n = 10)
 condition$code_system <- "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
 condition$code <- sprintf(
   "%s%02d.%d",
-  sample(toupper(letters), nrow(condition), replace = TRUE),
-  sample(1:99, nrow(condition), replace = TRUE),
-  sample(1:99, nrow(condition), replace = TRUE)
+  sample(c("A", "B", "E", "F", "G", "I", "J", "K", "L", "M", "N", "R", "U"), nrow(condition), replace = TRUE),
+  sample(0:99, nrow(condition), replace = TRUE),
+  sample(0:99, nrow(condition), replace = TRUE)
 )
 write.csv(condition, "condition.csv", row.names = FALSE)
 rm(condition)

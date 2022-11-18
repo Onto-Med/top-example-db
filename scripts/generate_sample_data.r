@@ -42,7 +42,7 @@ write.csv(assessment1[, c(1, 2, 5, 6, 7)], "assessment1.csv", row.names = FALSE)
 rm(assessment1)
 
 ## conditions
-condition <- build_skeleton(subject, n = 10)
+condition <- build_skeleton(subject)
 condition$code_system <- "http://fhir.de/CodeSystem/bfarm/icd-10-gm"
 condition$code <- sprintf(
   "%s%02d.%d",

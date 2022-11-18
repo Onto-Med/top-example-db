@@ -39,7 +39,7 @@ CREATE TABLE procedure (
 );
 
 COPY subject (subject_id, birth_date, sex) FROM '/docker-entrypoint-initdb.d/subject.csv' DELIMITER ',' CSV HEADER;
-COPY assessment1 (subject_id, created_at, height, weight) FROM '/docker-entrypoint-initdb.d/assessment1.csv' DELIMITER ',' CSV HEADER;
+COPY assessment1 (subject_id, created_at, height, weight, sodium_level) FROM '/docker-entrypoint-initdb.d/assessment1.csv' DELIMITER ',' CSV HEADER;
 COPY condition (subject_id, created_at, code_system, code) FROM '/docker-entrypoint-initdb.d/condition.csv' DELIMITER ',' CSV HEADER;
 COPY medication (subject_id, created_at, code_system, code, amount) FROM '/docker-entrypoint-initdb.d/medication.csv' DELIMITER ',' CSV HEADER;
 COPY procedure (subject_id, created_at, code_system, code) FROM '/docker-entrypoint-initdb.d/procedure.csv' DELIMITER ',' CSV HEADER;

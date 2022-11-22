@@ -37,7 +37,7 @@ write.csv(subject, "subject.csv", row.names = FALSE)
 assessment1 <- build_skeleton(subject, master_data = TRUE)
 assessment1$height <- mock_values(assessment1, sex = "sex", age = "age", childsds::kro.ref, "height")$height
 assessment1$weight <- mock_values(assessment1, sex = "sex", age = "age", childsds::kro.ref, "weight")$weight
-assessment1$sodium_level <- rnorm(nrow(assessment1), mean = 140, sd = 5)
+assessment1$sodium_level <- rnorm(nrow(assessment1), mean = 60.9, sd = 2.17)
 write.csv(assessment1[, c(1, 2, 5, 6, 7)], "assessment1.csv", row.names = FALSE)
 rm(assessment1)
 

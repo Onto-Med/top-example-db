@@ -13,7 +13,7 @@ Follow these instructions to set up the example database:
         git clone https://github.com/Onto-Med/top-example-db.git
         cd top-example-db
 
-2. Copy [docker-compose.env.tpl](docker-compose.env.tpl) and modify it as needed
+2. Copy [docker-compose.env.dist](docker-compose.env.dist) and modify it as needed
 
         cp docker-compose.env.tpl docker-compose.env
 

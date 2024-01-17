@@ -45,6 +45,7 @@ CREATE TABLE phenotype (
     code_system     text                         NOT NULL,
     code            text                         NOT NULL,
     number_value    numeric,
+    unit            text,
     text_value      text,
     date_time_value timestamp without time zone,
     boolean_value   boolean
@@ -55,4 +56,4 @@ COPY assessment1 (subject_id, created_at, height, weight, sodium_level) FROM '/d
 COPY condition (subject_id, created_at, code_system, code) FROM '/docker-entrypoint-initdb.d/condition.csv' DELIMITER ',' CSV HEADER;
 COPY medication (subject_id, created_at, code_system, code, amount) FROM '/docker-entrypoint-initdb.d/medication.csv' DELIMITER ',' CSV HEADER;
 COPY procedure (subject_id, created_at, code_system, code) FROM '/docker-entrypoint-initdb.d/procedure.csv' DELIMITER ',' CSV HEADER;
-COPY phenotype (subject_id, created_at, code_system, code, number_value, text_value, date_time_value, boolean_value) FROM '/docker-entrypoint-initdb.d/phenotype.csv' DELIMITER ',' CSV HEADER;
+COPY phenotype (subject_id, created_at, code_system, code, number_value, unit, text_value, date_time_value, boolean_value) FROM '/docker-entrypoint-initdb.d/phenotype.csv' DELIMITER ',' CSV HEADER;

@@ -82,26 +82,28 @@ rm(procedure)
 
 ## wide table
 mock_table <- function(
-  data, n = 3, code_system = "http://loinc.org/", code, mean, sd, mod = NULL, boolean = FALSE
+  data, n = 3, code_system = "http://loinc.org", code, mean, sd, mod = NULL, boolean = FALSE, unit = NA
 ) {
   rs <- build_skeleton(subject, n)
   rs$code_system <- code_system
   rs$code <- sample(c(code), nrow(rs), replace = TRUE)
-  rs[,c("number_value", "text_value", "date_time_value", "boolean_value")] <- NA
+  rs[,c("number_value", "unit", "text_value", "date_time_value", "boolean_value")] <- NA
   if (boolean) {
     rs$boolean_value <- TRUE
   } else if (!is.null(mod)) {
     rs$number_value <- abs(rnorm(nrow(rs), mean, sd)) %% mod
+    rs$unit <- unit
   } else {
     rs$number_value <- rnorm(nrow(rs), mean, sd)
+    rs$unit <- unit
   }
   rs
 }
 
 # DOI: 10.2147/DMSO.S279949
-creatinine <- mock_table(subject, code = "2160-0", mean = 0.87, sd = 0.44)
+creatinine <- mock_table(subject, code = "2160-0", mean = 0.87, sd = 0.44, unit = "mg/dL")
 # derived from DOI: 10.5114/biolsport.2017.63732
-bilirubin <- mock_table(subject, code = "42719-5", mean = 0.725, sd = 0.2514)
+bilirubin <- mock_table(subject, code = "42719-5", mean = 0.725, sd = 0.2514, unit = "mg/dL")
 # DOI: 10.1016/j.jstrokecerebrovasdis.2015.05.017
 inr <- mock_table(subject, code = c("6301-6", "34714-6", "38875-1"), mean = 0.502, sd = 0.202, mod = 1)
 

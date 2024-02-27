@@ -94,7 +94,7 @@ mock_table <- function(
     rs$number_value <- abs(rnorm(nrow(rs), mean, sd)) %% mod
     rs$unit <- unit
   } else {
-    rs$number_value <- rnorm(nrow(rs), mean, sd)
+    rs$number_value <- abs(rnorm(nrow(rs), mean, sd))
     rs$unit <- unit
   }
   rs
